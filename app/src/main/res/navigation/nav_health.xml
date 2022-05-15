@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_game"
+    app:startDestination="@id/healthFragment">
+
+    <fragment
+        android:id="@+id/healthFragment"
+        android:name="com.yfrite.healthinjoy.main.health.ui.HealthFragment"
+        android:label="fragment_health"
+        tools:layout="@layout/fragment_health" />
+</navigation>

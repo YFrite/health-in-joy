@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_intellectual_training"
+    app:startDestination="@id/intellectualTrainingFragment">
+
+    <fragment
+        android:id="@+id/intellectualTrainingFragment"
+        android:name="com.yfrite.healthinjoy.main.train.intellectual.IntellectualTrainingFragment"
+        android:label="fragment_brain_training"
+        tools:layout="@layout/fragment_intellectual_training" />
+</navigation>

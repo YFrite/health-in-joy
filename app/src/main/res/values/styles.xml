@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SplashScreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:windowBackground">
+            @drawable/splash_background</item>
+    </style>
+
+    <style name="HealthInJoyMain" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="cardElevation">5dp</item>
+        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:statusBarColor">@color/green</item>
+        <item name="buttonStyle">@style/Widget.Material3.Button.TonalButton</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalStyle</item>
+    </style>
+
+    <style name="ModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
+</resources>

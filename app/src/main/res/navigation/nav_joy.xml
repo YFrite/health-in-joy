@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_joy"
+    app:startDestination="@id/joyFragment">
+
+    <fragment
+        android:id="@+id/joyFragment"
+        android:name="com.yfrite.healthinjoy.main.joy.ui.JoyFragment"
+        android:label="JoyFragment" />
+</navigation>
