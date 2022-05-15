@@ -5,7 +5,288 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.train.physical.PhysicalTrainingFragment"
-    android:background="@color/green">
+    android:background="@color/background">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        style="@style/Widget.Material3.CardView.Filled"
+        app:cardBackgroundColor="@color/green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="0dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:textSize="20sp"
+            android:text="Спорт это отлично!"
+            android:textColor="@color/white"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="@color/white"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Общая статистика"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/first_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сброшено ккал"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/second_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Проделано упражнений"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_gravity="end">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dropped_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/count_of_workout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/zero"/>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="70dp"
+        android:text="Программы тренировок на всё тело"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/body_beginner"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/bottom_navigation_colors"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ВСЁ ТЕЛО: НАЧИНАЮЩИЙ"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Эффективное начало тренировок для всего тела на месяц"
+            tools:ignore="SmallSp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/body_average"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="230dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/bottom_navigation_colors"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ВСЁ ТЕЛО: СРЕДНИЙ"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Программа тренировок \nдля закрепления физического состояния здоровья на месяц"
+            tools:ignore="SmallSp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/body_advanced"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="410dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/bottom_navigation_colors"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ВСЁ ТЕЛО: ПРОДВИНУТЫЙ"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Продвинутые тренировки \n для значительного подъёма вашего
+физического состояния "
+            tools:ignore="SmallSp" />
+    </com.google.android.material.card.MaterialCardView>
+
+<!--TODO-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:text="Укрепляем иммунитет"-->
+<!--        android:textStyle="bold" />-->
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/immunity_beginner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        android:backgroundTint="@color/bottom_navigation_colors"-->
+<!--        android:layout_gravity="center">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ВСЁ ТЕЛО: НАЧИНАЮЩИЙ"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="10sp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Эффективное начало тренировок для всего тела на месяц"-->
+<!--            tools:ignore="SmallSp" />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/immunity_average"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_marginTop="230dp"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        android:backgroundTint="@color/bottom_navigation_colors"-->
+<!--        android:layout_gravity="center">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ВСЁ ТЕЛО: СРЕДНИЙ"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="10sp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Программа тренировок \nдля закрепления физического состояния здоровья на месяц"-->
+<!--            tools:ignore="SmallSp" />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/immunity_advanced"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:layout_marginTop="410dp"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        android:backgroundTint="@color/bottom_navigation_colors"-->
+<!--        android:layout_gravity="center">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ВСЁ ТЕЛО: ПРОДВИНУТЫЙ"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="10sp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Продвинутые тренировки \n для значительного подъёма вашего-->
+<!--физического состояния "-->
+<!--            tools:ignore="SmallSp" />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

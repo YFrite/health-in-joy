@@ -45,6 +45,13 @@
         <entry key="..\:/AndroidProjects/Health In Joy/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/Health In Joy/app/src/main/res/layout/fragment_splash.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/Health In Joy/app/src/main/res/menu/menu_main.xml" value="0.23645833333333333" />
+        <entry key="app/src/main/res/layout/dialog_item.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_health.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout/fragment_physical_training.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_training.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_training_complex.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/training_item.xml" value="0.22469437652811736" />
       </map>
     </option>
   </component>
