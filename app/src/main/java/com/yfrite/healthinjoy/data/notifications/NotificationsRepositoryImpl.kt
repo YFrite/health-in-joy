@@ -12,7 +12,15 @@ class NotificationsRepositoryImpl @Inject constructor(private val dao: Notificat
         dao.insert(data)
     }
 
+    override suspend fun getTwoNotifications(): LiveData<List<Notification>> {
+        return dao.getTwoNotifications()
+    }
+
     override suspend fun clear() {
         dao.clear()
+    }
+
+    override suspend fun delete(id: Long) {
+        dao.delete(id)
     }
 }

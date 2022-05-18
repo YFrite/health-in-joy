@@ -1,6 +1,7 @@
 package com.yfrite.healthinjoy.main.health.viewModel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yfrite.healthinjoy.data.eaten.Eaten
@@ -17,6 +18,8 @@ class HealthViewModel @Inject constructor(private val repositoryEaten: EatenRepo
                                           private val repositoryNotification: NotificationsRepository): ViewModel() {
 
     val eatenHistory: LiveData<List<Eaten>> = repositoryEaten.getHistory()
+    val notifications: LiveData<List<Notification>> = repositoryNotification.getAll()
+    val twoNotifications = MutableLiveData<List<Notification>>()
 
     fun updateEatenData(data: Eaten) = viewModelScope.launch(Dispatchers.IO) {
         repositoryEaten.update(data)
@@ -26,7 +29,17 @@ class HealthViewModel @Inject constructor(private val repositoryEaten: EatenRepo
 //        repository.insert(data)
 //    }
 
+    fun twoNotifications(){
+        viewModelScope.launch(Dispatchers.IO) {
+            twoNotifications.postValue(repositoryNotification.getTwoNotifications().value)
+        }
+    }
+
     fun newNotification(data: Notification) = viewModelScope.launch(Dispatchers.IO) {
         repositoryNotification.insert(data)
+    }
+
+    fun removeNotification(id: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repositoryNotification.delete(id)
     }
 }

@@ -50,17 +50,16 @@
             android:layout_marginTop="60dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/first_event"
+                android:id="@+id/first_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="First"/>
+                />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/second_event"
+                android:id="@+id/second_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Second"
                 />
         </LinearLayout>
 
@@ -75,15 +74,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/first_event_time"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/zero_date"/>
+                android:layout_height="wrap_content"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/second_event_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/zero_date"/>
+                android:layout_marginTop="20dp"/>
 
         </LinearLayout>
 
@@ -93,11 +90,21 @@
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginBottom="10dp">
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_alarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Добавить событие"
+                android:src="@drawable/ic_add"
+                android:backgroundTint="@color/green"
+                android:foregroundTint="@color/white"
+                android:outlineProvider="none"
+                />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/alarm_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все события"
                 android:backgroundTint="@color/green"
                 android:textColor="@color/white"
                 android:outlineProvider="none"

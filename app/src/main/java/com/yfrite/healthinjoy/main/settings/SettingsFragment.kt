@@ -53,10 +53,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setupUserData(){
-        binding.userName.text = userRepository.name
-        binding.weight.text = userRepository.weight.toString()
-        binding.height.text = userRepository.height.toString()
-        binding.droppedCalories.text = userRepository.droppedCalories.toString()
+//        binding.userName.text = userRepository.name
+//        binding.weight.text = userRepository.weight.toString()
+//        binding.height.text = userRepository.height.toString()
+//        binding.droppedCalories.text = userRepository.droppedCalories.toString()
 
     }
 

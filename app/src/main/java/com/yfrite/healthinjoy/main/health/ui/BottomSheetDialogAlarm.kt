@@ -73,9 +73,15 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
             ).get(HealthViewModel::class.java)
 
+            val data = Data.Builder()
+            data.putString("name", binding.name.text.toString())
+            data.putString("description", binding.description.text.toString())
+
             val alarmWorkRequest: PeriodicWorkRequest =
                 PeriodicWorkRequestBuilder<AlarmWorker>(Duration.ofSeconds(duration.toLong()))
+                    .setInputData(data.build())
                     .build()
+
             WorkManager.getInstance(requireContext())
                 .enqueueUniquePeriodicWork(binding.name.text.toString() ,ExistingPeriodicWorkPolicy.REPLACE, alarmWorkRequest)
 
