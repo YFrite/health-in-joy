@@ -7,7 +7,7 @@ class TimeUtil {
         fun secondsByMinutes(data: Int) = data * 60
         fun secondsByHours(data: Int) = secondsByMinutes(minutesByHours(data))
 
-        private fun minutesByHours(data: Int) = data * 60
+        fun minutesByHours(data: Int) = data * 60
     }
 
 }

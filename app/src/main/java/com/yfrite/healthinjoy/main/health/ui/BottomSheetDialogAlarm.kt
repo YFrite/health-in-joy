@@ -2,6 +2,7 @@ package com.yfrite.healthinjoy.main.health.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +65,8 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
     private fun setupButtons(){
         binding.ok.setOnClickListener {
 
-            val duration = TimeUtil.secondsByHours(timePicker.hour) + TimeUtil.secondsByMinutes(timePicker.minute)
+            val duration = TimeUtil.minutesByHours(timePicker.hour) + timePicker.minute
+            Log.e("AlarmWorker", "Duration: $duration")
 
             if(!checkTextFields()) return@setOnClickListener
 
@@ -78,12 +80,13 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
             data.putString("description", binding.description.text.toString())
 
             val alarmWorkRequest: PeriodicWorkRequest =
-                PeriodicWorkRequestBuilder<AlarmWorker>(Duration.ofSeconds(duration.toLong()))
+                PeriodicWorkRequestBuilder<AlarmWorker>(duration.toLong(), TimeUnit.MINUTES)
+                    .setInitialDelay(duration.toLong(), TimeUnit.MINUTES)
                     .setInputData(data.build())
                     .build()
 
             WorkManager.getInstance(requireContext())
-                .enqueueUniquePeriodicWork(binding.name.text.toString() ,ExistingPeriodicWorkPolicy.REPLACE, alarmWorkRequest)
+                .enqueueUniquePeriodicWork(binding.name.text.toString(), ExistingPeriodicWorkPolicy.REPLACE, alarmWorkRequest)
 
             viewModel.newNotification(
                 Notification(notificationId = alarmWorkRequest.id.toString(),

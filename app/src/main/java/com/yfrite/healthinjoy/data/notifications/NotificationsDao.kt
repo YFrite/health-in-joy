@@ -19,7 +19,7 @@ interface NotificationsDao {
     @Query(value = "SELECT * FROM notifications_table")
     fun getAll(): LiveData<List<Notification>>
 
-    @Query(value = "SELECT * FROM notifications_table ORDER BY time DESC LIMIT 2")
+    @Query(value = "SELECT * FROM notifications_table LIMIT 2")
     fun getTwoNotifications(): LiveData<List<Notification>>
 
     @Query(value = "DELETE FROM notifications_table")
