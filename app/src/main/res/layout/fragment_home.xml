@@ -7,15 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".main.home.HomeFragment">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        style="@style/Widget.Material3.CardView.Filled"
+        app:cardBackgroundColor="@color/green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="0dp">
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/scada_bold"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_marginTop="80dp"
+        android:text="@string/error"/>
+
     <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_weather"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+        android:id="@+id/shimmer_weather"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shimmer_base_alpha="1"
+        app:shimmer_highlight_color="@color/gray"
+        app:shimmer_colored="true">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_weather"
@@ -23,7 +48,16 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/green">
+                android:background="@color/white"
+                app:cardCornerRadius="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/weather_icon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="70dp"
+                    app:shapeAppearanceOverlay="@style/cornerImage" />
 
                 <TextView
                     android:id="@+id/loading"
@@ -32,30 +66,38 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:textAlignment="center"
+                    android:fontFamily="@font/scada_bold"
                     android:text="Загрузка..."/>
-
-                <TextView
-                    android:id="@+id/temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="70dp"
-                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="30dp"
-                    android:textSize="13sp" />
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/scada_bold"
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="70dp"
+                    android:fontFamily="@font/scada_bold"
+                    android:textSize="23sp" />
+
+                <TextView
                     android:id="@+id/feelsLike"
-                    android:layout_gravity="center"
-                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="115dp"
+                    android:fontFamily="@font/scada_regular"
+                    android:textSize="17sp"
                     />
 
                 <Button
@@ -65,20 +107,12 @@
                     android:layout_gravity="center"
                     android:textAlignment="center"
                     android:visibility="gone"
+                    android:fontFamily="@font/scada_regular"
+                    android:backgroundTint="@color/dark_green"
                     android:text="Включить"/>
             </androidx.cardview.widget.CardView>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:text="@string/error"/>
 
     <TextView
         android:id="@+id/text_training_categories"
@@ -88,6 +122,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shimmer_weather"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/scada_bold"
+        android:textSize="15sp"
         android:text="@string/training_category"/>
 
     <LinearLayout
@@ -103,51 +139,68 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_physical_training"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/bottom_navigation_colors"
+            android:backgroundTint="@color/dark_green"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="50dp">
+            android:layout_marginHorizontal="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/training_physical"
-                android:layout_gravity="center"/>
+                android:layout_gravity="start|center"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/scada_bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Эффективная программа тренировок для тела"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/white"
                 android:textSize="10sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="microText sshshhshshhshshshhshshshshhshs"
+                android:fontFamily="@font/scada_regular"
                 tools:ignore="SmallSp" />
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_intellectual_training"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="10dp"
-            android:backgroundTint="@color/bottom_navigation_colors"
+            android:backgroundTint="@color/dark_green"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/training_intellectual"
-                android:layout_gravity="center"/>
+                android:layout_gravity="start|center"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/scada_bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Эффективная программа тренировок для моторики мозга"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/white"
                 android:textSize="10sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="microText sshshhshshhshshshhshshshshhshs"
+                android:fontFamily="@font/scada_regular"
                 tools:ignore="SmallSp" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>

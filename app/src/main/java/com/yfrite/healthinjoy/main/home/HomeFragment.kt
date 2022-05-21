@@ -6,6 +6,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -27,9 +29,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.annotation.Nullable
 import androidx.navigation.Navigation
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.RequestListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @DelicateCoroutinesApi
 @AndroidEntryPoint
@@ -40,14 +48,13 @@ class HomeFragment : Fragment() {
     private var lat: String = ""
     private var lon: String = ""
 
-    private lateinit var temperatureStr: String
-    private lateinit var descriptionStr: String
-    private lateinit var feelsLikeStr: String
-
     private var mLocation: Location? = null
     private var mLocationManager: LocationManager? = null
 
     private lateinit var binding: FragmentHomeBinding
+
+    @Inject
+    lateinit var glide: RequestBuilder<Bitmap>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,14 +70,18 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        userRepository = UserRepository(requireActivity().getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE))
+        userRepository = UserRepository(
+            requireActivity().getSharedPreferences(
+                "user",
+                AppCompatActivity.MODE_PRIVATE
+            )
+        )
 
         binding.name.text = getTime() + userRepository.name
 
         return binding.root.rootView
     }
 
-    //Init cards
     private fun initCards() {
         binding.cardIntellectualTraining.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToNavIntellectualTraining()
@@ -94,10 +105,12 @@ class HomeFragment : Fragment() {
         )
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "CheckResult")
     private fun setWeather() {
+
         GlobalScope.launch {
-            mLocationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            mLocationManager =
+                requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
             if (checkAndAskForLocationPermissions()) {
                 if (checkGpsEnabled()) {
@@ -108,13 +121,18 @@ class HomeFragment : Fragment() {
                     Log.e("location", "$lat $lon")
 
                     val weather = getWeather()
-                    temperatureStr = weather[0]
-                    descriptionStr = weather[1]
-                    feelsLikeStr = weather[2]
+                    val temperatureStr = weather[0]
+                    val descriptionStr = weather[1]
+                    val feelsLikeStr = weather[2]
+                    val icon = weather[3]
 
                     MainScope().launch {
-                        binding.temperature.text = temperatureStr
-                        binding.feelsLike.text = feelsLikeStr
+                        glide
+                            .load(icon)
+                            .into(binding.weatherIcon)
+
+                        binding.temperature.text = "${temperatureStr}°"
+                        binding.feelsLike.text = "Ощущается как ${feelsLikeStr}°"
                         binding.description.text = descriptionStr
 
                         binding.onGPS.visibility = View.GONE
@@ -128,9 +146,6 @@ class HomeFragment : Fragment() {
                         binding.shimmerWeather.hideShimmer()
                         binding.onGPS.visibility = View.VISIBLE
                         binding.onGPS.setOnClickListener {
-                            //val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                            //mPermissionResult.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-                            //startActivityForResult(intent, codeEnableLocation)
                             resultLauncher.launch(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
 
                         }
@@ -138,7 +153,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     //Contracts
@@ -156,15 +170,13 @@ class HomeFragment : Fragment() {
     private val resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        //Log.e("res", result.resultCode.toString())
-        Log.e("resultCode", Activity.RESULT_OK.toString())
         if (result.resultCode == 0) {
             binding.onGPS.visibility = View.GONE
             binding.loading.text = "Загрузка"
-            binding.shimmerWeather.showShimmer(true)        }
+            binding.shimmerWeather.showShimmer(true)
+            setWeather()
+        }
     }
-
-    //private val fragmentLauncher = ref
 
     //Location
     @SuppressLint("MissingPermission")
@@ -253,7 +265,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkGpsEnabled(): Boolean {
-        //Check if the gps is enabled
         val isLocationEnabled = mLocationManager?.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
         return isLocationEnabled!!

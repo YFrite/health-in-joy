@@ -88,12 +88,11 @@ class RegisterActivity : AppCompatActivity() {
                 binding.female.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
-                        green_button_not_pressed
+                        green
                     )
                 )
             sex = 0
-            Log.e("sex", sex.toString())
-            it.setBackgroundColor(ContextCompat.getColor(this, green_button_pressed))
+            it.setBackgroundColor(ContextCompat.getColor(this, dark_green))
         }
 
         binding.female.setOnClickListener {
@@ -101,12 +100,11 @@ class RegisterActivity : AppCompatActivity() {
                 binding.male.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
-                        green_button_not_pressed
+                        green
                     )
                 )
             sex = 1
-            Log.e("sex", sex.toString())
-            it.setBackgroundColor(ContextCompat.getColor(this, green_button_pressed))
+            it.setBackgroundColor(ContextCompat.getColor(this, dark_green))
         }
 
         binding.finish.setOnClickListener {

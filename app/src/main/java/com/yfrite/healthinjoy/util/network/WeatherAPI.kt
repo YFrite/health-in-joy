@@ -1,5 +1,6 @@
 package com.yfrite.healthinjoy.util.network
 
+import android.util.Log
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -40,20 +41,24 @@ class WeatherAPI {
 
                 val answer = JSONObject(response.body!!.string()).getJSONObject("current")
 
+                val weather = answer.getJSONArray("weather").getJSONObject(0)
+
                 infoList.add(answer.getString("temp"))
-                infoList.add(
-                    answer.getJSONArray("weather").getJSONObject(0)
-                        .getString("description")
-                )
+                infoList.add(weather.getString("description"))
                 //infoList.add(answer.getString("humidity"))
                 //infoList.add(answer.getString("pressure"))
                 //infoList.add(answer.getString("wind_speed"))
                 infoList.add(answer.getString("feels_like"))
+                infoList.add(getWeatherIcon(weather.getString("icon")))
                 //infoList.add(answer.getString("sunrise"))
                 //infoList.add(answer.getString("sunset"))
+                Log.e("List info", answer.toString())
 
             }
             return infoList
         }
+
+        private fun getWeatherIcon(code: String): String = "https://openweathermap.org/img/wn/${code}@2x.png"
+
     }
 }
