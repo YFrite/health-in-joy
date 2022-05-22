@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
         val dayWorkRequest: PeriodicWorkRequest =
             PeriodicWorkRequestBuilder<DayWorker>(Duration.ofHours(24))
                 .build()
-        WorkManager.getInstance(this)
+        WorkManager.getInstance(applicationContext)
             .enqueueUniquePeriodicWork("DayWorker",ExistingPeriodicWorkPolicy.KEEP, dayWorkRequest)
 
         // Check user already registered

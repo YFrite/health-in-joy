@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yfrite.healthinjoy.databinding.FragmentAlarmListBinding
 import com.yfrite.healthinjoy.main.health.viewModel.HealthViewModel
+import com.yfrite.healthinjoy.util.android.recyclerAdapter.NotificationsRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,14 +30,14 @@ class AlarmListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.notifications.observe(viewLifecycleOwner){
-            var str = ""
-            for(item in it){
-                str += "${item.name}\n"
-            }
-            binding.list.text = str
-        }
+        var adapter: NotificationsRecyclerView
 
+        binding.alarms.layoutManager = LinearLayoutManager(binding.root.context)
+
+        viewModel.notifications.observe(viewLifecycleOwner){
+            adapter = NotificationsRecyclerView(it, viewModel)
+            binding.alarms.adapter = adapter
+        }
     }
 
 //    private fun initAlarmList(){

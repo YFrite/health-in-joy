@@ -18,5 +18,9 @@
         android:id="@+id/alarmListFragment"
         android:name="com.yfrite.healthinjoy.main.health.ui.AlarmListFragment"
         android:label="fragment_alarm_list"
-        tools:layout="@layout/fragment_alarm_list" />
+        tools:layout="@layout/fragment_alarm_list" >
+        <action
+            android:id="@+id/action_alarmListFragment_to_healthFragment"
+            app:destination="@id/healthFragment" />
+    </fragment>
 </navigation>

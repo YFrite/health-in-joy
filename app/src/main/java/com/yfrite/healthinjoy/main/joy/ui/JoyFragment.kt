@@ -14,7 +14,7 @@ import com.yfrite.healthinjoy.data.messages.Message
 import com.yfrite.healthinjoy.databinding.FragmentJoyBinding
 import com.yfrite.healthinjoy.main.joy.viewModel.JoyViewModel
 import com.yfrite.healthinjoy.util.ai.GPT3
-import com.yfrite.healthinjoy.util.android.recycler_adapter.MessagesRecyclerAdapter
+import com.yfrite.healthinjoy.util.android.recyclerAdapter.MessagesRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope

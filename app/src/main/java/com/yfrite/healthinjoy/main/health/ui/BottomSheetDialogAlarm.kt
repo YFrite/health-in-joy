@@ -2,7 +2,6 @@ package com.yfrite.healthinjoy.main.health.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,23 +9,17 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat.CLOCK_24H
+import com.yfrite.healthinjoy.R
 import com.yfrite.healthinjoy.data.notifications.Notification
-import com.yfrite.healthinjoy.data.notifications.NotificationsDao
-import com.yfrite.healthinjoy.data.notifications.NotificationsRepository
 import com.yfrite.healthinjoy.databinding.BottomSheetAlarmBinding
 import com.yfrite.healthinjoy.main.health.viewModel.HealthViewModel
 import com.yfrite.healthinjoy.util.android.time.TimeUtil
 import com.yfrite.healthinjoy.util.android.time.worker.AlarmWorker
-import com.yfrite.healthinjoy.util.android.time.worker.DayWorker
 import dagger.hilt.android.AndroidEntryPoint
-import java.sql.Time
 import java.time.Duration
-import java.util.*
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
@@ -43,6 +36,8 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
 
         return binding.root
     }
+
+    override fun getTheme() = R.style.BottomSheetDialogTheme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,12 +58,17 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setupButtons(){
+        var minutes = 0
+        var hours = 0
         binding.ok.setOnClickListener {
 
-            val duration = TimeUtil.minutesByHours(timePicker.hour) + timePicker.minute
-            Log.e("AlarmWorker", "Duration: $duration")
-
+            if (minutes == 0 && hours == 0){
+                Toast.makeText(requireContext(), "Вы не указали время", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             if(!checkTextFields()) return@setOnClickListener
+
+            val duration = TimeUtil.minutesByHours(hours) + minutes
 
             val viewModel = ViewModelProvider(
                 requireParentFragment(),
@@ -80,8 +80,8 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
             data.putString("description", binding.description.text.toString())
 
             val alarmWorkRequest: PeriodicWorkRequest =
-                PeriodicWorkRequestBuilder<AlarmWorker>(duration.toLong(), TimeUnit.MINUTES)
-                    .setInitialDelay(duration.toLong(), TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<AlarmWorker>(Duration.ofMinutes(duration.toLong()))
+                    .setInitialDelay(Duration.ofMinutes(duration.toLong()))
                     .setInputData(data.build())
                     .build()
 
@@ -102,7 +102,22 @@ class BottomSheetDialogAlarm: BottomSheetDialogFragment() {
         binding.timePicker.setOnClickListener {
             timePicker.show(childFragmentManager, "TimePickerAlarm")
             timePicker.addOnPositiveButtonClickListener {
-                binding.time.text = "${timePicker.hour}: ${timePicker.minute}"
+                val tempMinutes = timePicker.minute
+                val tempHours = timePicker.hour
+
+                if(tempMinutes >= 15 && tempHours == 0)
+                    binding.time.text = "Напоминать каждые $tempMinutes минут"
+                else if(tempMinutes == 0 && tempHours != 0)
+                    binding.time.text = "Напоминать каждые $tempHours часов"
+                else if(tempMinutes != 0 && tempHours != 0)
+                    binding.time.text = "Напоминать каждые $tempMinutes минут и $tempHours часов"
+                else{
+                    Toast.makeText(requireContext(), "Время не может быть меньше 15 минут.", Toast.LENGTH_LONG).show()
+                    return@addOnPositiveButtonClickListener
+                }
+
+                minutes = tempMinutes
+                hours = tempHours
             }
         }
 

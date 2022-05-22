@@ -8,7 +8,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         style="@style/Widget.Material3.CardView.Filled"
         app:cardBackgroundColor="@color/green"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,18 +19,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
-            android:textSize="20sp"
-            android:text="Здоровый образ жизни!"
-            android:textColor="@color/white"/>
+            android:text="Пора кушать?"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/scada_bold"
+            android:layout_marginTop="20dp"/>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/notifications"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         app:cardBackgroundColor="@color/white"
         >
 
@@ -40,6 +43,7 @@
             android:text="Ближайшие события:"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/scada_bold"
             />
 
         <LinearLayout
@@ -47,12 +51,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="50dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/first_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/scada_regular"
                 />
 
             <com.google.android.material.textview.MaterialTextView
@@ -60,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/scada_regular"
                 />
         </LinearLayout>
 
@@ -68,47 +74,54 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="end">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/first_event_time"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/scada_regular"
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/second_event_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/scada_regular"
+                />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="20dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_alarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
-                android:backgroundTint="@color/green"
-                android:foregroundTint="@color/white"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/dark_green"
                 android:outlineProvider="none"
-                />
+                android:src="@drawable/ic_add"
+                app:tint="@color/white" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/alarm_list"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:text="Все события"
-                android:backgroundTint="@color/green"
-                android:textColor="@color/white"
+                android:backgroundTint="@color/dark_green"
+                android:layout_gravity="end"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/scada_regular"
                 android:outlineProvider="none"
-                />
+                android:text="Все события"
+                android:textColor="@color/white" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -116,13 +129,14 @@
         android:id="@+id/drink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notifications"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="20dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/dark_green"
         android:textColor="@color/white"
         android:text="Попил"
+        android:fontFamily="@font/scada_regular"
         style="@style/Widget.Material3.Button.TonalButton"
         />
 
@@ -130,141 +144,169 @@
         android:id="@+id/eat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notifications"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/dark_green"
         android:textColor="@color/white"
         android:text="Поел"
+        android:fontFamily="@font/scada_regular"
         style="@style/Widget.Material3.Button.TonalButton"
         />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/drink"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/drink">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Калл"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Жиры"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Белки"/>
+                android:text="Калл"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"
+                />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Углеводы"/>
+                android:text="Жиры"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Вода"/>
+                android:text="Белки"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Углеводы"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Вода"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="20dp">
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user_calories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/zero"/>
+                android:text="0  Ккал"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user_fats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/zero"/>
+                android:text="0 г"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user_protein"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/zero"/>
+                android:text="0 г"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user_carbohydrates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/zero"/>
+                android:text="0 г"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/user_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/zero"/>
+                android:text="0 мл"
+                android:fontFamily="@font/scada_regular"
+                android:textSize="15sp"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:orientation="vertical">-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2740 ккал" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="2740 ккал" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="60 г" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="60 г" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="205 г" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="205 г" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="342 г" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="342 г" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="4166 мл" />
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="4166 мл" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,15 +26,16 @@ class HealthFragment : Fragment() {
 
         viewModel.twoNotifications()
 
+        setupObserves()
+        setupButtons()
+
         return binding.root.rootView
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupObserve()
-        setupButtons()
+    override fun onResume() {
+        super.onResume()
+        setupObserves()
     }
 
     private fun setupButtons() {
@@ -45,7 +46,10 @@ class HealthFragment : Fragment() {
         binding.addAlarm.setOnClickListener {
             val dialog = BottomSheetDialogAlarm()
             dialog.show(childFragmentManager, "BottomSheetAlarm")
-            viewModel.twoNotifications()
+        }
+        binding.eat.setOnClickListener {
+            val dialog = BottomSheetDialogEat()
+            dialog.show(childFragmentManager, "BottomSheetEat")
         }
         binding.alarmList.setOnClickListener {
             val action = HealthFragmentDirections.actionHealthFragmentToAlarmListFragment()
@@ -54,26 +58,35 @@ class HealthFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setupObserve() {
+    private fun setupObserves() {
 
         viewModel.twoNotifications.observe(viewLifecycleOwner) {
-            if (it == null) return@observe
+            if(it.isEmpty()){
+                binding.firstEventName.text = "Отсуствуют!"
+                binding.firstEventTime.text = ""
 
+                binding.secondEventName.text = ""
+                binding.secondEventTime.text = ""
+                return@observe
+            }
             binding.firstEventName.text = it[0].name
-            binding.firstEventTime.text = "Осталось ${it[0].time}"
+            binding.firstEventTime.text = "Осталось ${it[0].time} минут"
 
             if (it.size == 2) {
                 binding.secondEventName.text = it[1].name
-                binding.secondEventTime.text = "Осталось ${it[1].time}"
+                binding.secondEventTime.text = "Осталось ${it[1].time} минут"
+            } else{
+                binding.secondEventName.text = ""
+                binding.secondEventTime.text = ""
             }
         }
 
         viewModel.eatenHistory.observe(viewLifecycleOwner) {
-            binding.userWater.text = it.last().water.toString()
-            binding.userCalories.text = it.last().calories.toString()
-            binding.userCarbohydrates.text = it.last().carbohydrates.toString()
-            binding.userFats.text = it.last().fats.toString()
-            binding.userProtein.text = it.last().protein.toString()
+            binding.userWater.text = "${it.last().water} мл"
+            binding.userCalories.text = "${it.last().calories} Ккал"
+            binding.userCarbohydrates.text = "${it.last().carbohydrates} г"
+            binding.userFats.text = "${it.last().fats} г"
+            binding.userProtein.text = "${it.last().protein} г"
         }
     }
 

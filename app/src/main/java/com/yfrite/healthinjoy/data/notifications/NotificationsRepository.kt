@@ -10,7 +10,7 @@ interface NotificationsRepository {
 
     suspend fun insert(data: Notification)
 
-    suspend fun getTwoNotifications(): LiveData<List<Notification>>
+    fun getTwoNotifications(): LiveData<List<Notification>>
 
     suspend fun delete(id: Long)
 

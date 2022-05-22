@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".main.health.ui.AlarmListFragment">
 
-    <TextView
-        android:id="@+id/list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alarms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </TextView>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/notification_item"
+        android:layout_marginTop="25dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

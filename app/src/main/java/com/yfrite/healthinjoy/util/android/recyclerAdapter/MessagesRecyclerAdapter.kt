@@ -1,4 +1,4 @@
-package com.yfrite.healthinjoy.util.android.recycler_adapter
+package com.yfrite.healthinjoy.util.android.recyclerAdapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yfrite.healthinjoy.R
 import com.yfrite.healthinjoy.data.messages.Message
 
-class MessagesRecyclerAdapter :
+class MessagesRecyclerAdapter:
     RecyclerView.Adapter<MessagesRecyclerAdapter.ViewHolder>(){
 
     private var data: ArrayList<Message> = ArrayList()

@@ -15,7 +15,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @InstallIn(FragmentComponent::class)
 class GlideModule {
 
-    @Provides fun provideGlide(@ApplicationContext context: Context): RequestBuilder<Bitmap> = Glide.with(context)
+    @Provides
+    fun provideGlide(@ApplicationContext context: Context): RequestBuilder<Bitmap> = Glide.with(context)
         .asBitmap()
         .skipMemoryCache(true)
 }
