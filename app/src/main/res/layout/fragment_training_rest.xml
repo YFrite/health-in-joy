@@ -44,17 +44,17 @@
         android:text="Пропустить"
         android:textColor="@color/background"/>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/skip"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/green"
-        android:text="+30 секунд"
-        android:textColor="@color/background"/>
+<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--        android:id="@+id/add_time"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/skip"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:backgroundTint="@color/green"-->
+<!--        android:text="+30 секунд"-->
+<!--        android:textColor="@color/background"/>-->
 
 
 

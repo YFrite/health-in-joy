@@ -46,5 +46,41 @@
         <argument
             android:name="difficulty"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_trainingFragment_to_trainingFinishFragment"
+            app:destination="@id/trainingFinishFragment" />
+        <argument
+            android:name="timer"
+            android:defaultValue="null" />
+        <action
+            android:id="@+id/action_trainingFragment_to_trainingRestFragment"
+            app:destination="@id/trainingRestFragment" />
+        <argument
+            android:name="number"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingFinishFragment"
+        android:name="com.yfrite.healthinjoy.main.train.physical.ui.TrainingFinishFragment"
+        android:label="fragment_training_finish"
+        tools:layout="@layout/fragment_training_finish" />
+    <fragment
+        android:id="@+id/trainingRestFragment"
+        android:name="com.yfrite.healthinjoy.main.train.physical.ui.TrainingRestFragment"
+        android:label="fragment_training_rest"
+        tools:layout="@layout/fragment_training_rest" >
+        <action
+            android:id="@+id/action_trainingRestFragment_to_trainingFragment"
+            app:destination="@id/trainingFragment" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="difficulty"
+            app:argType="integer" />
+        <argument
+            android:name="number"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -13,7 +13,7 @@ import javax.inject.Inject
 class PhysicalTrainingViewModel @Inject constructor(private val repository: TrainingsRepository): ViewModel(){
 
     val trainings = MediatorLiveData<List<Training>>()
-    val currentTrainingNumber: LiveData<Int> by lazy {
+    val currentTrainingNumber: MutableLiveData<Int> by lazy {
         MutableLiveData(1)
     }
 
@@ -24,5 +24,15 @@ class PhysicalTrainingViewModel @Inject constructor(private val repository: Trai
             trainings.removeSource(data)
             trainings.value = it
         }
+    }
+
+    fun isLast(): Boolean{
+        Log.e("et", "${currentTrainingNumber.value!!} ${trainings.value!!.size}")
+        return currentTrainingNumber.value!! == trainings.value!!.size
+    }
+
+    fun next(){
+        Log.e("time", trainings.value!!.size.toString())
+        currentTrainingNumber.value = currentTrainingNumber.value!! + 1
     }
 }

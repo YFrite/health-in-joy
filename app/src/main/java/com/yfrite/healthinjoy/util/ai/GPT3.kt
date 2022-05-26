@@ -21,18 +21,18 @@ class GPT3 {
 
         private const val PROMPT = "Следующее это диалог человека с русским ИИ. ИИ полезный, умный и дружелюбный. "
 
-        private const val MESSAGES_COUNT = 5
+        private const val MESSAGES_COUNT = 10
 
-        private const val API_KEY_OPENAI = "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"
+        private const val API_KEY_OPENAI = "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"
 
         private const val USER_NAME = "Человек: "
         private const val JOY_NAME = "Джой: "
 
         private const val TEMPERATURE = 0.9
-        private const val MAX_TOKENS = 500
+        private const val MAX_TOKENS = 1000
         private const val TOP_P = 1
-        private const val FREQUENCY_PENALTY = 0.0
-        private const val PRESENCE_PENALTY = 0.6
+        private const val FREQUENCY_PENALTY = 0.5
+        private const val PRESENCE_PENALTY = 0.7
         private const val STOP = "[\" $USER_NAME\", \" $JOY_NAME\"]"
     }
 

@@ -70,6 +70,7 @@
         <entry key="app/src/main/res/layout/fragment_training_complex.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_training_finish.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_training_pause.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_training_rest.xml" value="0.1" />
         <entry key="app/src/main/res/layout/notification_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/training_item.xml" value="0.5" />
       </map>
