@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.train.physical.PhysicalTrainingFragment"
+    tools:context=".main.train.physical.ui.PhysicalTrainingFragment"
     android:background="@color/background">
 
     <com.google.android.material.card.MaterialCardView
@@ -90,6 +90,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,93 +101,39 @@
         android:text="Программы тренировок на всё тело"
         android:textStyle="bold" />
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/body_beginner"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="100dp"
         app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/bottom_navigation_colors"
-        android:layout_gravity="center">
+        android:backgroundTint="@color/dark_green"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/text">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ВСЁ ТЕЛО: НАЧИНАЮЩИЙ"
-            android:layout_gravity="center"/>
+            android:layout_gravity="start|center"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/scada_bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="Эффективное начало тренировок для всего тела на месяц"
-            tools:ignore="SmallSp" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/body_average"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="230dp"
-        app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/bottom_navigation_colors"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ВСЁ ТЕЛО: СРЕДНИЙ"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
             android:textSize="10sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Программа тренировок \nдля закрепления физического состояния здоровья на месяц"
+            android:fontFamily="@font/scada_regular"
             tools:ignore="SmallSp" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/body_advanced"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="410dp"
-        app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/bottom_navigation_colors"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ВСЁ ТЕЛО: ПРОДВИНУТЫЙ"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Продвинутые тренировки \n для значительного подъёма вашего
-физического состояния "
-            tools:ignore="SmallSp" />
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 <!--TODO-->
 

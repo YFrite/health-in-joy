@@ -1,12 +1,11 @@
-package com.yfrite.healthinjoy.main.train.physical
+package com.yfrite.healthinjoy.main.train.physical.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.yfrite.healthinjoy.R
+import androidx.navigation.Navigation
 import com.yfrite.healthinjoy.databinding.FragmentPhysicalTrainingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,11 +20,9 @@ class PhysicalTrainingFragment : Fragment() {
     ): View {
         binding = FragmentPhysicalTrainingBinding.inflate(layoutInflater, container, false)
 
-
-        // BINDING USAGE EXAMPLE(make toast: context = "EXAMPLE", len = LONG)
-        // Мой код стайл можешь чекнуть в main/health/ui/HealthFragment
-        binding.bodyAdvanced.setOnClickListener {
-            Toast.makeText(context, "EXAMPLE", Toast.LENGTH_LONG).show()
+        binding.bodyBeginner.setOnClickListener {
+            val action = PhysicalTrainingFragmentDirections.actionPhysicalTrainingFragmentToTrainingComplexFragment("physical", 0, "ВСЁ ТЕЛО: НАЧИНАЮЩИЙ")
+            Navigation.findNavController(it).navigate(action)
         }
 
         return binding.root

@@ -67,14 +67,29 @@ class HealthFragment : Fragment() {
 
                 binding.secondEventName.text = ""
                 binding.secondEventTime.text = ""
+
+                binding.alarmList.visibility = View.GONE
                 return@observe
             }
-            binding.firstEventName.text = it[0].name
-            binding.firstEventTime.text = "Осталось ${it[0].time} минут"
 
+            val time = it[0].time.toInt()
+
+            val timeInText: String = if(time > 60 && time%60 != 0){
+                val hours = time/60
+                "Каждые $hours часа и ${time-hours*60} минут"
+            } else if(time > 60 && time%60 == 0){
+                val hours = time/60
+                "Каждые $hours часа"
+            } else{
+                "Каждые $time минут"
+            }
+
+            binding.firstEventName.text = it[0].name
+            binding.firstEventTime.text = timeInText
+            binding.alarmList.visibility = View.VISIBLE
             if (it.size == 2) {
                 binding.secondEventName.text = it[1].name
-                binding.secondEventTime.text = "Осталось ${it[1].time} минут"
+                binding.secondEventTime.text = timeInText
             } else{
                 binding.secondEventName.text = ""
                 binding.secondEventTime.text = ""

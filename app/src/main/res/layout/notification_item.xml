@@ -59,7 +59,8 @@
             android:src="@drawable/ic_cancel"
             app:fabSize="mini"
             app:tint="@color/white"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="130dp"/>
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

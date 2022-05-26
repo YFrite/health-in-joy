@@ -7,7 +7,44 @@
 
     <fragment
         android:id="@+id/physicalTrainingFragment"
-        android:name="com.yfrite.healthinjoy.main.train.physical.PhysicalTrainingFragment"
+        android:name="com.yfrite.healthinjoy.main.train.physical.ui.PhysicalTrainingFragment"
         android:label="fragment_physical_training"
-        tools:layout="@layout/fragment_physical_training" />
+        tools:layout="@layout/fragment_physical_training" >
+        <action
+            android:id="@+id/action_physicalTrainingFragment_to_trainingComplexFragment"
+            app:destination="@id/trainingComplexFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingComplexFragment"
+        android:name="com.yfrite.healthinjoy.main.train.physical.ui.TrainingComplexFragment"
+        android:label="fragment_training_complex"
+        tools:layout="@layout/fragment_training_complex" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="difficulty"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_trainingComplexFragment_to_trainingFragment"
+            app:destination="@id/trainingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingFragment"
+        android:name="com.yfrite.healthinjoy.main.train.physical.ui.TrainingFragment"
+        android:label="fragment_training"
+        tools:layout="@layout/fragment_training" >
+        <action
+            android:id="@+id/action_trainingFragment_self"
+            app:destination="@id/trainingFragment" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="difficulty"
+            app:argType="integer" />
+    </fragment>
 </navigation>

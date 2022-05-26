@@ -6,6 +6,8 @@ import com.yfrite.healthinjoy.data.messages.MessagesRepository
 import com.yfrite.healthinjoy.data.messages.MessagesRepositoryImpl
 import com.yfrite.healthinjoy.data.notifications.NotificationsRepository
 import com.yfrite.healthinjoy.data.notifications.NotificationsRepositoryImpl
+import com.yfrite.healthinjoy.data.trainings.TrainingsRepository
+import com.yfrite.healthinjoy.data.trainings.TrainingsRepositoryImpl
 import dagger.Binds
 import dagger.Component
 import dagger.Module
@@ -29,4 +31,7 @@ interface RepositoryModule {
 
     @Binds
     fun provideNotificationsRepository(repository: NotificationsRepositoryImpl): NotificationsRepository
+
+    @Binds
+    fun provideTrainingsRepository(repository: TrainingsRepositoryImpl): TrainingsRepository
 }

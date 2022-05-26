@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.yfrite.healthinjoy.data.eaten.EatenDatabase
 import com.yfrite.healthinjoy.data.messages.MessagesDatabase
 import com.yfrite.healthinjoy.data.notifications.NotificationsDatabase
+import com.yfrite.healthinjoy.data.trainings.TrainingsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,5 +49,16 @@ class RoomModule {
         context.applicationContext,
         NotificationsDatabase::class.java,
         "notifications_database"
+    ).build()
+
+    @Provides
+    fun provideTrainingsDao(database: TrainingsDatabase) = database.trainingsDao()
+
+    @Provides
+    @Singleton
+    fun provideTrainingsDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context.applicationContext,
+        TrainingsDatabase::class.java,
+        "trainings_database"
     ).build()
 }

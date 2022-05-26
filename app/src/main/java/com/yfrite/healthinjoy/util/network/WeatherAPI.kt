@@ -22,19 +22,28 @@ class WeatherAPI {
             lang: String,
             units: String
         ): ArrayList<String> {
-            val infoList = ArrayList<String>()
-
+            Log.e("info", "started")
             val url =
-                "https://api.openweathermap.org/data/2.5/onecall?appid=ef579925a8bef98928577e47621e42c7" +
+                "https://api.openweathermap.org/data/2.5/onecall?appid=ff651a331568e86c80788a5d90cb7c7b" +
                         "&lat=" + lat +
                         "&lon=" + lon +
                         "&exclude=" + exclude +
                         "&lang=" + lang +
                         "&units=" + units
-
+            Log.i("Weather api", url)
             val request = Request.Builder()
                 .url(url)
                 .build()
+
+            return try {
+                newCall(request)
+            } catch (error: Exception){
+                newCall(request)
+            }
+        }
+
+        private fun newCall(request: Request): ArrayList<String>{
+            val infoList = ArrayList<String>()
 
             client.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
@@ -53,8 +62,8 @@ class WeatherAPI {
                 //infoList.add(answer.getString("sunrise"))
                 //infoList.add(answer.getString("sunset"))
                 Log.e("List info", answer.toString())
-
             }
+
             return infoList
         }
 

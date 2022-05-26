@@ -19,6 +19,8 @@ import com.yfrite.healthinjoy.data.eaten.Eaten
 import com.yfrite.healthinjoy.data.eaten.EatenRepository
 import com.yfrite.healthinjoy.data.messages.Message
 import com.yfrite.healthinjoy.data.messages.MessagesRepository
+import com.yfrite.healthinjoy.data.trainings.Training
+import com.yfrite.healthinjoy.data.trainings.TrainingsRepository
 import com.yfrite.healthinjoy.databinding.ActivityRegisterBinding
 import com.yfrite.healthinjoy.main.MainActivity
 import com.yfrite.healthinjoy.util.android.time.worker.AlarmWorker.Companion.CHANNEL_ID
@@ -44,6 +46,8 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var eatenRepository: EatenRepository
     @Inject
     lateinit var messagesRepository: MessagesRepository
+    @Inject
+    lateinit var trainingsRepository: TrainingsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,7 +155,10 @@ class RegisterActivity : AppCompatActivity() {
             eatenRepository.insert(Eaten())
             messagesRepository.insert(Message(text = "Кто вы?", from = Message.Sender.USER))
             messagesRepository.insert(Message(text = "Привет, я Джой, ваш личный помощник!", from = Message.Sender.JOY))
-
+            trainingsRepository.insert(Training(type="physical", difficulty = 0, name = "Планка",
+                description = "Упражнение выполняется из начальной позиции отжиманий. Локти должны быть согнуты под прямым углом и находиться на одной линии с плечами. Ваше тело должно представлять собой одну прямую линию. Вес тела необходимо удерживать на локтях и пальцах ног, равномерно распределяя его по точкам опоры",
+                time = 30
+            ))
         }
     }
 

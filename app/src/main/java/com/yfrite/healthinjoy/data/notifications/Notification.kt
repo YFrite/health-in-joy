@@ -24,4 +24,4 @@ data class Notification (
 
         @ColumnInfo(name = "description")
         var description: String = "null",
-        )
+)

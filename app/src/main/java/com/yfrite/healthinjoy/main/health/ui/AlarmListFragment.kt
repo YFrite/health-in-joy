@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yfrite.healthinjoy.databinding.FragmentAlarmListBinding
 import com.yfrite.healthinjoy.main.health.viewModel.HealthViewModel
-import com.yfrite.healthinjoy.util.android.recyclerAdapter.NotificationsRecyclerView
+import com.yfrite.healthinjoy.util.android.recyclerAdapter.NotificationsRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,13 +31,24 @@ class AlarmListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var adapter: NotificationsRecyclerView
+
+        setupButtons()
+
+        var adapter: NotificationsRecyclerAdapter
 
         binding.alarms.layoutManager = LinearLayoutManager(binding.root.context)
 
         viewModel.notifications.observe(viewLifecycleOwner){
-            adapter = NotificationsRecyclerView(it, viewModel)
+            adapter = NotificationsRecyclerAdapter(it, viewModel)
             binding.alarms.adapter = adapter
+        }
+    }
+
+    private fun setupButtons(){
+        binding.back.setOnClickListener {
+//            val action = AlarmListFragmentDirections.actionAlarmListFragmentToHealthFragment()
+//            Navigation.findNavController(it).navigate(action)
+            Navigation.findNavController(it).popBackStack()
         }
     }
 

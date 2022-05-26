@@ -1,4 +1,4 @@
-package com.yfrite.healthinjoy.main.train.physical
+package com.yfrite.healthinjoy.main.train.physical.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

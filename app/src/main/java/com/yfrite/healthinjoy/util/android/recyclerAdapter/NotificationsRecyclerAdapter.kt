@@ -1,7 +1,6 @@
 package com.yfrite.healthinjoy.util.android.recyclerAdapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +10,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
 import com.yfrite.healthinjoy.R
 import com.yfrite.healthinjoy.data.notifications.Notification
-import com.yfrite.healthinjoy.data.notifications.NotificationsRepository
-import com.yfrite.healthinjoy.main.health.ui.HealthFragment
 import com.yfrite.healthinjoy.main.health.viewModel.HealthViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.collections.ArrayList
 
-class NotificationsRecyclerView(val data: List<Notification> = ArrayList(), val viewModel: HealthViewModel):
-    RecyclerView.Adapter<NotificationsRecyclerView.ViewHolder>(){
+class NotificationsRecyclerAdapter(val data: List<Notification> = ArrayList(), val viewModel: HealthViewModel):
+    RecyclerView.Adapter<NotificationsRecyclerAdapter.ViewHolder>(){
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val name: MaterialTextView = view.findViewById(R.id.name)

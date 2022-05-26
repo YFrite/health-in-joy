@@ -96,13 +96,23 @@ class HomeFragment : Fragment() {
 
     //Weather
     private fun getWeather(): ArrayList<String> {
-        return WeatherAPI.getWeather(
-            lat,
-            lon,
-            "minutely,daily,hourly,alerts",
-            "ru",
-            "metric"
-        )
+        try {
+            return WeatherAPI.getWeather(
+                lat,
+                lon,
+                "minutely,daily,hourly,alerts",
+                "ru",
+                "metric"
+            )
+        } catch (error: Exception){
+            return WeatherAPI.getWeather(
+                lat,
+                lon,
+                "minutely,daily,hourly,alerts",
+                "ru",
+                "metric"
+            )
+        }
     }
 
     @SuppressLint("SetTextI18n", "CheckResult")
@@ -112,8 +122,13 @@ class HomeFragment : Fragment() {
             mLocationManager =
                 requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-            if (checkAndAskForLocationPermissions()) {
+            if (checkPermissions()) {
                 if (checkGpsEnabled()) {
+
+                    MainScope().launch {
+                        binding.onGPS.visibility = View.GONE
+                        binding.shimmerWeather.showShimmer(true)
+                    }
                     requestLocationUpdates()
 
                     lon = mLocation?.longitude.toString()
@@ -127,10 +142,6 @@ class HomeFragment : Fragment() {
                     val icon = weather[3]
 
                     MainScope().launch {
-                        glide
-                            .load(icon)
-                            .into(binding.weatherIcon)
-
                         binding.temperature.text = "${temperatureStr}°"
                         binding.feelsLike.text = "Ощущается как ${feelsLikeStr}°"
                         binding.description.text = descriptionStr
@@ -138,6 +149,10 @@ class HomeFragment : Fragment() {
                         binding.onGPS.visibility = View.GONE
                         binding.loading.visibility = View.GONE
                         binding.shimmerWeather.hideShimmer()
+
+                        glide
+                            .load(icon)
+                            .into(binding.weatherIcon)
                     }
 
                 } else {
@@ -151,6 +166,8 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
+            } else {
+                askPermissions()
             }
         }
     }
@@ -162,8 +179,6 @@ class HomeFragment : Fragment() {
         if (result) {
             if(checkGpsEnabled())
                 requestLocationUpdates()
-        } else {
-            checkAndAskForLocationPermissions()
         }
     }
 
@@ -171,9 +186,6 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == 0) {
-            binding.onGPS.visibility = View.GONE
-            binding.loading.text = "Загрузка"
-            binding.shimmerWeather.showShimmer(true)
             setWeather()
         }
     }
@@ -255,13 +267,12 @@ class HomeFragment : Fragment() {
 
     //Permissions
     @SuppressLint("WrongConstant")
-    private fun checkAndAskForLocationPermissions(): Boolean {
-        if (checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            permissionResultLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    private fun checkPermissions(): Boolean {
+        return checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    }
 
-            return false
-        }
-        return true
+    private fun askPermissions() {
+        permissionResultLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     private fun checkGpsEnabled(): Boolean {

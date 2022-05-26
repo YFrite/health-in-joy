@@ -4,30 +4,47 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+<!--    <com.google.android.material.imageview.ShapeableImageView-->
+<!--        android:id="@+id/image"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginStart="40dp"/>-->
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:strokeWidth="0.5dp"
+        app:strokeColor="@color/black"
+        android:backgroundTint="@color/background"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="40dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image"
-        android:layout_marginStart="20dp"
-        android:text="@string/error"/>
+        app:cardCornerRadius="0dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintStart_toStartOf="@id/name"
-        android:layout_marginTop="20dp"
-        android:text="@string/error"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="НАЗВАНИЕ"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/scada_bold"
+            android:textSize="20sp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ПРОДОЛЖИТЕЛЬНОСТЬ"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/scada_regular"
+            android:textSize="15sp"/>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
